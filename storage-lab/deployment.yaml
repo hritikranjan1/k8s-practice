@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-storage
+  namespace: storage-lab
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: nginx-storage
+
+  template:
+    metadata:
+      labels:
+        app: nginx-storage
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+
+          volumeMounts:
+            - name: storage
+              mountPath: /usr/share/nginx/html
+
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: storage-lab-pvc

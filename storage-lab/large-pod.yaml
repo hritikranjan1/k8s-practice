@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: large-pod
+  namespace: storage-lab
+
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+
+      volumeMounts:
+        - name: large-storage
+          mountPath: /data
+
+  volumes:
+    - name: large-storage
+      persistentVolumeClaim:
+        claimName: large-pvc
