@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab40-nginx
+  namespace: pv-pvc-final
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: lab40-nginx
+
+  template:
+    metadata:
+      labels:
+        app: lab40-nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+
+          ports:
+            - containerPort: 80
+
+          volumeMounts:
+            - name: nginx-storage
+              mountPath: /usr/share/nginx/html
+
+      volumes:
+        - name: nginx-storage
+          persistentVolumeClaim:
+            claimName: lab40-nginx-pvc

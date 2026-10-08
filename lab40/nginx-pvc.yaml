@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lab40-nginx-pvc
+  namespace: pv-pvc-final
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  storageClassName: lab40-nginx
+
+  resources:
+    requests:
+      storage: 1Gi

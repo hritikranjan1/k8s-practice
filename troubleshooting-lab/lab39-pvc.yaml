@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lab39-pvc
+  namespace: troubleshooting-lab
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: lab39-storage
+  resources:
+    requests:
+      storage: 1Gi

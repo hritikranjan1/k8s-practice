@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: lab40-nginx-pv
+spec:
+  capacity:
+    storage: 2Gi
+
+  accessModes:
+    - ReadWriteOnce
+
+  persistentVolumeReclaimPolicy: Retain
+
+  storageClassName: lab40-nginx
+
+  hostPath:
+    path: /data/lab40-nginx
+    type: DirectoryOrCreate
