@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-deployment
+  namespace: service-lab
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: nginx-scale
+
+  template:
+    metadata:
+      labels:
+        app: nginx-scale
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
