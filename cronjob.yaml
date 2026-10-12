@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cronjob
+  namespace: config-lab
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox:1.36
+              command:
+                - /bin/sh
+                - -c
+                - 'echo "Hello from Kubernetes CronJob"; date'
+          restartPolicy: OnFailure

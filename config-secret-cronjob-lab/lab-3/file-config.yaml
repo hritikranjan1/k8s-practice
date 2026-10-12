@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: file-config
+  namespace: configmap-lab
+data:
+  app.properties: |
+    app.env=development
+    app.port=8080
+    log.level=debug
+  welcome.txt: |
+    Hello from a Kubernetes ConfigMap

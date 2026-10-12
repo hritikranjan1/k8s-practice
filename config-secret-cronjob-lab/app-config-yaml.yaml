@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-yaml
+  namespace: configmap-lab
+data:
+  APP_ENV: production
+  APP_PORT: "8080"
+  LOG_LEVEL: info
+  APP_MESSAGE: "Hello from Kubernetes"

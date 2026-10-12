@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: update-demo
+  namespace: configmap-lab
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "sleep 3600"]
+      env:
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: update-config
+              key: APP_ENV
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/app-config
+          readOnly: true
+  volumes:
+    - name: config-volume
+      configMap:
+        name: update-config

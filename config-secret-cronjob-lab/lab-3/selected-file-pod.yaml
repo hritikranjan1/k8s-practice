@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: selected-file-demo
+  namespace: configmap-lab
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: selected-config
+          mountPath: /etc/app-config
+          readOnly: true
+  volumes:
+    - name: selected-config
+      configMap:
+        name: file-config
+        items:
+          - key: welcome.txt
+            path: message.txt
